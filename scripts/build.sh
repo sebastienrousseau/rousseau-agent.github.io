@@ -60,6 +60,9 @@ python3 scripts/emit-sitemap.py
 echo "==> Encoding rousseau-chat.webm + captions"
 bash scripts/build-video-assets.sh
 
+echo "==> Applying BASE_PATH prefix (if set) for project-page hosting"
+python3 scripts/apply-base-path.py
+
 echo "==> Emitting carbon.txt"
 python3 scripts/emit-carbon-txt.py
 

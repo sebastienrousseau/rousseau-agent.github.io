@@ -44,6 +44,10 @@ jobs:
         run: ffmpeg -version | head -1
 
       - name: Build the site (public/)
+        env:
+          # GitHub Pages serves this project-page repo under a subpath;
+          # every root-relative URL gets prefixed at build time.
+          BASE_PATH: /rousseau-agent.github.io
         run: bash scripts/build.sh
 
       - name: Install Node + Pa11y
