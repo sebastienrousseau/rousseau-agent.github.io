@@ -14,17 +14,21 @@ if [ ! -x a11y-tooling/node_modules/.bin/pa11y ]; then
 fi
 
 BASE="${1:-${BASE_URL:-http://127.0.0.1:8000}}"
+# When the build was BASE_PATH-prefixed (project-page hosting), the
+# rendered URLs live under that prefix; the sampled routes need the
+# same prefix so they resolve.
+PREFIX="${BASE_PATH:-}"
 PAGES=(
-  "/"
-  "/quickstart/"
-  "/getting-started/installation/"
-  "/providers/anthropic/"
-  "/transports/whatsapp/"
-  "/concepts/"
-  "/security/"
-  "/troubleshooting/"
-  "/reference/carbon/"
-  "/faq/general/"
+  "${PREFIX}/"
+  "${PREFIX}/quickstart/"
+  "${PREFIX}/getting-started/installation/"
+  "${PREFIX}/providers/anthropic/"
+  "${PREFIX}/transports/whatsapp/"
+  "${PREFIX}/concepts/"
+  "${PREFIX}/security/"
+  "${PREFIX}/troubleshooting/"
+  "${PREFIX}/reference/carbon/"
+  "${PREFIX}/faq/general/"
 )
 
 TOTAL=0

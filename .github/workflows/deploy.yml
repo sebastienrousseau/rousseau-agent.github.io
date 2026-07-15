@@ -59,18 +59,26 @@ jobs:
         working-directory: a11y-tooling
         run: npm install --no-save pa11y
 
-      - name: Start local HTTP server for verification
+      - name: Start local HTTP server for verification (mount public/ under subpath)
         run: |
-          (cd public && python3 -m http.server 8000 &> /tmp/httpd.log &)
+          # Rewritten HTML uses /rousseau-agent.github.io/foo/ paths;
+          # mount public/ under that same subpath so the URLs resolve
+          # exactly as they will on GitHub Pages.
+          mkdir -p _serve
+          ln -sfn "$PWD/public" _serve/rousseau-agent.github.io
+          (cd _serve && python3 -m http.server 8000 &> /tmp/httpd.log &)
           for i in $(seq 1 20); do
-            curl -sf http://127.0.0.1:8000/ >/dev/null 2>&1 && break
+            curl -sf http://127.0.0.1:8000/rousseau-agent.github.io/ >/dev/null 2>&1 && break
             sleep 0.5
           done
-          curl -I http://127.0.0.1:8000/ | head -1
+          curl -I http://127.0.0.1:8000/rousseau-agent.github.io/ | head -1
 
       - name: Run verification monitors
         env:
+          # Prefixed URLs in HTML resolve against BASE_URL/BASE_PATH/...;
+          # the http.server above mounts public/ at the subpath so /rousseau-agent.github.io/foo/ works.
           BASE_URL: http://127.0.0.1:8000
+          BASE_PATH: /rousseau-agent.github.io
         run: bash scripts/verify.sh
 
       - name: Configure Pages
