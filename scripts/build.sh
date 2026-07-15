@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-# Full rousseau-agent docs build with post-processes and monitors.
-# Idempotent: safe to re-run. Exits non-zero if any monitor fails.
+# rousseau-agent docs build pipeline. Produces a ready-to-serve `public/`.
+# Idempotent — safe to re-run.
+#
+# Run `scripts/verify.sh` afterwards (against a running server) to gate
+# on broken links + WCAG static/browser checks + carbon budget.
 
 set -euo pipefail
 
@@ -57,25 +60,11 @@ python3 scripts/emit-sitemap.py
 echo "==> Encoding rousseau-chat.webm + captions"
 bash scripts/build-video-assets.sh
 
-echo "==> Monitors"
-echo "  a. Broken internal links"
-python3 scripts/check-links.py http://127.0.0.1:8000
-
-echo "  b. WCAG 2.2 static audit (Pa11y-equivalent regex)"
-python3 scripts/wcag-static-audit.py
-
-echo "  c. HTML content-truthiness against source"
-python3 scripts/verify-content.py
-
-echo "  d. Page-weight carbon budget"
-python3 scripts/check-perf-budget.py
-
-echo "  e. Pa11y WCAG 2.2 AA browser audit (sampled)"
-bash scripts/pa11y-audit.sh
-
 echo "==> Emitting carbon.txt"
 python3 scripts/emit-carbon-txt.py
 
 echo "==> Build complete"
 find public -name "index.html" | wc -l | xargs -I{} echo "  pages: {}"
 du -sh public | awk '{print "  size:  "$1}'
+echo
+echo "Run scripts/verify.sh against a running server to gate the build."

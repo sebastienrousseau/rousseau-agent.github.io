@@ -1,0 +1,91 @@
+name: build + deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo registry + ssg binary
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ~/.cargo/bin/ssg
+          key: cargo-ssg-0.0.47
+
+      - name: Install ssg
+        run: |
+          if ! command -v ssg >/dev/null 2>&1; then
+            cargo install --locked ssg --version 0.0.47
+          fi
+          ssg --version
+
+      - name: Verify ffmpeg available (for WebM encode)
+        run: ffmpeg -version | head -1
+
+      - name: Build the site (public/)
+        run: bash scripts/build.sh
+
+      - name: Install Node + Pa11y
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install Pa11y (Chromium bundled)
+        working-directory: a11y-tooling
+        run: npm install --no-save pa11y
+
+      - name: Start local HTTP server for verification
+        run: |
+          (cd public && python3 -m http.server 8000 &> /tmp/httpd.log &)
+          for i in $(seq 1 20); do
+            curl -sf http://127.0.0.1:8000/ >/dev/null 2>&1 && break
+            sleep 0.5
+          done
+          curl -I http://127.0.0.1:8000/ | head -1
+
+      - name: Run verification monitors
+        env:
+          BASE_URL: http://127.0.0.1:8000
+        run: bash scripts/verify.sh
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

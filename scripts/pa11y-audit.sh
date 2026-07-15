@@ -13,7 +13,7 @@ if [ ! -x a11y-tooling/node_modules/.bin/pa11y ]; then
     exit 0
 fi
 
-BASE="${1:-http://127.0.0.1:8000}"
+BASE="${1:-${BASE_URL:-http://127.0.0.1:8000}}"
 PAGES=(
   "/"
   "/quickstart/"
