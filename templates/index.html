@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: Apache-2.0 OR MIT -->
+<html lang="{{language}}">
+<head>
+  <meta charset="{{charset}}" />
+  <link rel="preconnect" href="https://cloudcdn.pro" crossorigin />
+  
+  <link rel="stylesheet" href="/fonts/fonts.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{title}}</title>
+  {{!primary}}
+  {{!opengraph}}
+  <meta name="accessibility" content="ARIA" />
+  <meta name="accessibility" content="fullKeyboardControl" />
+  <meta name="accessibility" content="noFlashingHazard" />
+  {{!apple}}
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' ws://localhost:*; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self'; media-src 'self'; " />
+  {{!microsoft}}
+  {{!twitter}}
+  <link rel="alternate" href="{{url}}" hreflang="{{hreflang}}" />
+  <link rel="canonical" href="{{url}}" />
+  <link rel="icon" type="image/x-icon" href="{{cdn}}/{{short_name}}/v1/favicon.ico" />
+  <link rel="apple-touch-icon" href="{{cdn}}/{{short_name}}/v1/icons/{{apple_touch_icon_sizes}}.png" sizes="{{apple_touch_icon_sizes}}" />
+  <meta name="theme-color" content="rgb({{theme-color}})" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
+  <style>
+/* -- skeletonic v2.0.0 (inlined) ---------------------------------- */
+:root{--cl-primary:light-dark(oklch(.4 .2 250),oklch(.7 .16 250));--cl-secondary:light-dark(oklch(.38 .15 200),oklch(.65 .12 200));--bg-primary:light-dark(oklch(.96 .03 250),oklch(.18 .04 250));--cl-grey-100:light-dark(oklch(.98 .01 250),oklch(.15 .01 250));--cl-grey-200:light-dark(oklch(.9 .01 250),oklch(.25 .01 250));--cl-white:oklch(1 0 0);--cl-black:oklch(0 0 0);--background-color:light-dark(oklch(1 0 0),oklch(.05 .01 250));--foreground-color:light-dark(oklch(.11 .01 250),oklch(.95 .01 250));--cl-surface:light-dark(oklch(.98 .01 250),oklch(.12 .02 250));--link-color:light-dark(#0056b3,#66b2ff);--link-color-hover:light-dark(#003d7a,#99ccff);color-scheme:light dark}
+/* -- docs shell --------------------------------------------------- */
+:root{
+  --nav-h:56px;
+  --sidebar-w:280px;
+  --toc-w:240px;
+  --content-max:760px;
+  --border:light-dark(#9ca3af,#4b5563);
+  --border-strong:light-dark(#d1d5db,#3a3d48);
+  --bg:var(--background-color);
+  --bg-elev:light-dark(#fafafa,#141621);
+  --bg-code:light-dark(#f6f6f7,#1a1c26);
+  --fg:var(--foreground-color);
+  --fg-muted:light-dark(#374151,#d1d5db);
+  --fg-subtle:light-dark(#4b5563,#a5adba);
+  --brand:light-dark(#1a3a8a,#7aa4ff);
+  --brand-strong:light-dark(#122a63,#a4c1ff);
+  --brand-soft:light-dark(#eaf0ff,#1c2340);
+  --focus:#4c8bf5;
+  --radius:8px;
+  --font-sans:"Inter","Inter Fallback",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --font-serif:"Newsreader","Newsreader Fallback",Georgia,"Times New Roman",Times,serif;
+  --font-mono:"JetBrains Mono","JetBrains Mono Fallback",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--font-sans);font-size:15.5px;line-height:1.65;color:var(--fg);background:var(--bg);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--brand);text-decoration:none}
+a:hover{color:var(--brand-strong);text-decoration:underline;text-underline-offset:3px}
+img{max-width:100%;height:auto;display:block}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:3px}
+:root[data-theme="dark"]{color-scheme:dark}
+:root[data-theme="light"]{color-scheme:light}
+.skip-link{position:absolute;top:-100%;left:1rem;background:var(--brand);color:#fff;padding:.5rem 1rem;border-radius:var(--radius);z-index:1000;font-weight:600}
+.skip-link:focus{top:1rem}
+
+/* Top nav */
+.topnav{position:sticky;top:0;z-index:50;height:var(--nav-h);background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.topnav-inner{display:flex;align-items:center;gap:16px;height:100%;padding:0 24px;max-width:1440px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:650;color:var(--fg);letter-spacing:-.01em}
+.brand-mark{width:28px;height:28px;border-radius:50%;background:#000;display:grid;place-items:center;color:#fff;font-size:14px;font-weight:700;letter-spacing:0}
+.brand-mark span{display:inline-block;transform:translateY(-1px)}
+.brand-name{color:var(--fg);font-size:15px}
+.brand-name b{color:var(--brand)}
+.topnav-search{margin-left:auto;display:flex;align-items:center;gap:8px;padding:5px 10px 5px 10px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elev);color:var(--fg-subtle);cursor:pointer;font:inherit;font-size:13.5px;min-width:260px}
+.topnav-search:hover{border-color:var(--brand)}
+.topnav-search svg{width:14px;height:14px}
+.topnav-search kbd{margin-left:auto;font-family:var(--font-mono);font-size:11.5px;border:1px solid var(--border);border-radius:4px;padding:1px 6px;background:var(--bg);color:var(--fg-subtle)}
+.topnav-links{display:flex;align-items:center;gap:18px;font-size:13.5px}
+.topnav-links a{color:var(--fg-muted);font-weight:500}
+.topnav-links a:hover{color:var(--brand)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:var(--radius);padding:5px 8px;cursor:pointer;color:var(--fg-muted)}
+.theme-btn:hover{border-color:var(--brand);color:var(--brand)}
+.theme-btn svg{width:14px;height:14px}
+.mobile-toggle{display:none;background:none;border:1px solid var(--border);border-radius:var(--radius);padding:5px 8px;cursor:pointer;color:var(--fg)}
+
+/* Sidebar */
+.docs-shell{display:grid;grid-template-columns:var(--sidebar-w) minmax(0,1fr);gap:0;max-width:1440px;margin:0 auto;position:relative}
+.sidebar{position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));overflow-y:auto;padding:24px 12px 48px 20px;border-right:1px solid var(--border);font-size:14px;scrollbar-gutter:stable}
+.sidebar::-webkit-scrollbar{width:8px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:8px}
+.sidebar-group{margin-bottom:20px}
+.sidebar-heading{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-subtle);padding:6px 10px;margin-top:4px}
+.sidebar-list{list-style:none;padding:0;margin:0}
+.sidebar-list li{margin:1px 0}
+.sidebar-list a{display:block;padding:5px 10px;border-radius:5px;color:var(--fg-muted);font-weight:450;line-height:1.35}
+.sidebar-list a:hover{background:var(--bg-elev);color:var(--fg);text-decoration:none}
+.sidebar-list a.active{background:var(--brand-soft);color:var(--brand-strong);font-weight:600}
+
+/* Main content */
+.docs-main{min-width:0;padding:32px 44px 96px}
+.docs-hero{max-width:none;padding:64px 0 40px;border-bottom:1px solid var(--border);margin-bottom:40px}
+.docs-hero-eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin-bottom:12px}
+.docs-hero h1{font-family:var(--font-serif);font-size:clamp(2.25rem,4.5vw,3.25rem);font-weight:600;letter-spacing:-.025em;line-height:1.1;margin:0 0 16px;background:linear-gradient(120deg,var(--brand) 0%,#41d1ff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.docs-hero-tagline{font-size:1.15rem;color:var(--fg-muted);max-width:640px;margin:0 0 24px;line-height:1.55}
+.docs-hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+.docs-hero-badges span{font-size:12.5px;padding:4px 10px;border:1px solid var(--border);border-radius:12px;color:var(--fg-muted);background:var(--bg-elev)}
+.docs-hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:var(--radius);font-size:14px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:.15s ease all}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-strong);color:#fff;text-decoration:none}
+.btn-outline{border-color:var(--border-strong);color:var(--fg)}
+.btn-outline:hover{border-color:var(--brand);color:var(--brand);text-decoration:none}
+
+.content{max-width:var(--content-max)}
+.content h1{display:none} /* frontmatter title is rendered by hero/top-of-page */
+.content h2{font-family:var(--font-serif);font-size:1.6rem;font-weight:600;letter-spacing:-.015em;margin:44px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border);scroll-margin-top:calc(var(--nav-h) + 24px)}
+.content h2:first-child{margin-top:0}
+.content h3{font-size:1.2rem;font-weight:600;letter-spacing:-.005em;margin:32px 0 10px;scroll-margin-top:calc(var(--nav-h) + 24px)}
+.content h4{font-size:1.02rem;font-weight:600;margin:22px 0 8px}
+.content p{margin:12px 0}
+.content ul,.content ol{margin:12px 0;padding-left:1.4em}
+.content li{margin:4px 0}
+.content li>ul,.content li>ol{margin:4px 0}
+.content strong{font-weight:650;color:var(--fg)}
+.content blockquote{margin:16px 0;padding:12px 16px;border-left:3px solid var(--brand);background:var(--bg-elev);border-radius:0 var(--radius) var(--radius) 0;color:var(--fg-muted)}
+.content hr{border:none;border-top:1px solid var(--border);margin:32px 0}
+
+/* Code */
+.content code{font-family:var(--font-mono);font-size:.88em;background:var(--bg-code);padding:.14em .38em;border-radius:4px;color:light-dark(#c026d3,#e879f9)}
+.content pre{background:var(--bg-code);border:1px solid var(--border);border-radius:var(--radius);overflow-x:auto;padding:14px 16px;margin:16px 0;font-family:var(--font-mono);font-size:13.5px;line-height:1.55}
+.content pre code{background:none;padding:0;color:inherit;font-size:inherit;border-radius:0}
+
+/* Tables */
+.content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.content thead th{text-align:left;font-weight:650;background:var(--bg-elev);border-bottom:1px solid var(--border);padding:8px 12px}
+.content tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.content tbody tr:last-child td{border-bottom:none}
+.content th:first-child,.content td:first-child{padding-left:12px}
+
+/* Pillar grid for hero */
+.pillar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:20px 0 32px}
+.pillar-card{padding:20px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elev)}
+.pillar-card h3{margin:0 0 6px;font-size:1rem;font-weight:650}
+.pillar-card p{margin:0;color:var(--fg-muted);font-size:14px;line-height:1.5}
+
+/* Footer */
+.footer{border-top:1px solid var(--border);padding:32px 44px;font-size:13.5px;color:var(--fg-subtle);text-align:center}
+
+/* Responsive */
+@media(max-width:960px){
+  .docs-shell{grid-template-columns:1fr}
+  .sidebar{position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;width:100%;height:auto;padding:20px 20px 40px;background:var(--bg);z-index:40;transform:translateX(-100%);transition:transform .2s;border-right:none}
+  .sidebar.open{transform:translateX(0)}
+  .docs-main{padding:24px 20px 64px}
+  .mobile-toggle{display:inline-flex}
+  .topnav-search{min-width:0;max-width:160px}
+  .topnav-links{display:none}
+}
+@media(max-width:520px){
+  .topnav-search{display:none}
+  .docs-hero-actions{flex-direction:column}
+  .btn{width:100%;justify-content:center}
+}
+
+/* Hide the SSG search widget button (we use our own) */
+
+/* -- Tabs -------------------------------------------------------- */
+.tabs{margin:16px 0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.tabs .tab-list{display:flex;background:var(--bg-elev);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.tabs .tab-list::-webkit-scrollbar{display:none}
+.tabs .tab-list [role="tab"]{background:none;border:none;padding:10px 16px;font-family:inherit;font-size:13.5px;font-weight:600;color:var(--fg-muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:.15s}
+.tabs .tab-list [role="tab"]:hover{color:var(--fg)}
+.tabs .tab-list [role="tab"][aria-selected="true"]{color:var(--brand);border-bottom-color:var(--brand)}
+.tabs .tab-panel{padding:16px 20px}
+.tabs .tab-panel[hidden]{display:none}
+.tabs .tab-panel > :first-child{margin-top:0}
+.tabs .tab-panel > :last-child{margin-bottom:0}
+
+/* -- Admonitions ------------------------------------------------- */
+.admonition{margin:20px 0;padding:14px 16px;border-radius:var(--radius);border-left:4px solid;background:var(--bg-elev);position:relative;padding-left:52px}
+.admonition::before{position:absolute;left:16px;top:14px;width:22px;height:22px;display:grid;place-items:center;border-radius:50%;font-weight:700;font-size:13px;color:#fff}
+.admonition p:first-of-type{margin-top:0}
+.admonition p:last-of-type{margin-bottom:0}
+.admonition-title{font-weight:650;text-transform:uppercase;letter-spacing:.06em;font-size:12px;margin-bottom:4px;display:block}
+.admonition[data-type="note"]{border-color:light-dark(#3b82f6,#60a5fa)}
+.admonition[data-type="note"]::before{background:light-dark(#3b82f6,#60a5fa);content:"i"}
+.admonition[data-type="note"] .admonition-title{color:light-dark(#1e40af,#93c5fd)}
+.admonition[data-type="tip"]{border-color:light-dark(#10b981,#34d399)}
+.admonition[data-type="tip"]::before{background:light-dark(#10b981,#34d399);content:"\2713"}
+.admonition[data-type="tip"] .admonition-title{color:light-dark(#065f46,#a7f3d0)}
+.admonition[data-type="warning"]{border-color:light-dark(#f59e0b,#fbbf24)}
+.admonition[data-type="warning"]::before{background:light-dark(#f59e0b,#fbbf24);content:"!"}
+.admonition[data-type="warning"] .admonition-title{color:light-dark(#92400e,#fde68a)}
+.admonition[data-type="caution"]{border-color:light-dark(#ef4444,#f87171)}
+.admonition[data-type="caution"]::before{background:light-dark(#ef4444,#f87171);content:"\26A0"}
+.admonition[data-type="caution"] .admonition-title{color:light-dark(#991b1b,#fecaca)}
+.admonition[data-type="info"]{border-color:light-dark(#6366f1,#818cf8)}
+.admonition[data-type="info"]::before{background:light-dark(#6366f1,#818cf8);content:"i"}
+
+/* -- Code block copy button ------------------------------------- */
+.content pre{position:relative}
+.copy-btn{position:absolute;top:8px;right:8px;padding:4px 10px;font-family:var(--font-sans);font-size:11.5px;font-weight:600;background:color-mix(in oklab,var(--bg) 90%,transparent);color:var(--fg-muted);border:1px solid var(--border);border-radius:5px;cursor:pointer;opacity:0;transition:.15s;letter-spacing:.02em}
+.content pre:hover .copy-btn{opacity:1}
+.copy-btn:hover{color:var(--fg);border-color:var(--brand)}
+.copy-btn.copied{color:light-dark(#10b981,#34d399);border-color:light-dark(#10b981,#34d399)}
+
+/* -- Breadcrumbs ------------------------------------------------- */
+.breadcrumbs{font-size:12.5px;color:var(--fg-subtle);margin:0 0 12px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.breadcrumbs a{color:var(--fg-muted)}
+.breadcrumbs a:hover{color:var(--brand);text-decoration:none}
+.breadcrumbs .sep{color:var(--fg-subtle);user-select:none}
+.breadcrumbs .current{color:var(--fg);font-weight:500}
+
+/* -- Prev/Next pagination --------------------------------------- */
+.pagination{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:56px 0 0;padding-top:24px;border-top:1px solid var(--border)}
+.pagination a{display:block;padding:16px 20px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elev);color:var(--fg);text-decoration:none;transition:.15s}
+.pagination a:hover{border-color:var(--brand);text-decoration:none;transform:translateY(-1px)}
+.pagination-label{font-size:12px;color:var(--fg-subtle);margin:0 0 4px;text-transform:uppercase;letter-spacing:.06em}
+.pagination-title{font-weight:650;font-size:15px}
+.pagination .next{text-align:right}
+@media(max-width:520px){.pagination{grid-template-columns:1fr}}
+
+/* -- Collapsible sidebar groups -------------------------------- */
+.sidebar-heading{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.sidebar-heading::after{content:"\25BE";font-size:9px;color:var(--fg-subtle);transition:transform .15s}
+.sidebar-group.collapsed .sidebar-heading::after{transform:rotate(-90deg)}
+.sidebar-group.collapsed .sidebar-list{display:none}
+
+
+/* -- WCAG 2.2 AAA additions -------------------------------------- */
+[id]{scroll-margin-top:calc(var(--nav-h) + 24px)}
+:focus-visible{outline:3px solid #ff8c00;outline-offset:2px}
+.content a{text-underline-offset:3px;text-decoration-thickness:from-font}
+.content a:hover,.content a:focus-visible{text-decoration:underline;text-decoration-thickness:2px}
+.content pre code{color:light-dark(#111827,#f3f4f6)}
+.content code{color:light-dark(#7c1d6f,#f0abfc)}
+/* Persistent Consistent Help control (3.2.6) */
+.fab-help{position:fixed;bottom:20px;right:20px;width:52px;height:52px;border-radius:50%;background:var(--brand);color:#fff;border:2px solid var(--bg);display:grid;place-items:center;font-family:var(--font-serif);font-size:22px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.18);cursor:pointer;text-decoration:none;z-index:60}
+.fab-help:hover{background:var(--brand-strong);color:#fff;text-decoration:none;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.fab-help:focus-visible{outline:3px solid #ff8c00;outline-offset:3px}
+@media(max-width:520px){.fab-help{width:44px;height:44px;font-size:18px;bottom:14px;right:14px}}
+/* Status message live region for copy button */
+.copy-btn[aria-pressed="true"]{color:light-dark(#065f46,#a7f3d0)}
+.sr-status{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+
+
+/* Dark syntax highlighting override — the SSG's highlight.css emits inline
+   Base16-ocean colors that are dark-theme-first. In light mode we tone them
+   down for AAA contrast; dark mode uses them as-is. */
+:root[data-theme="light"] .content pre[style]{background-color:#f6f6f7!important}
+:root[data-theme="light"] .content pre span[style*="color:#c0c5ce"]{color:#111827!important}
+:root[data-theme="light"] .content pre span[style*="color:#8fa1b3"]{color:#0b5e93!important}
+:root[data-theme="light"] .content pre span[style*="color:#65737e"]{color:#4b5563!important}
+:root[data-theme="light"] .content pre span[style*="color:#96b5b4"]{color:#0e5c4a!important}
+:root[data-theme="light"] .content pre span[style*="color:#a3be8c"]{color:#065f46!important}
+:root[data-theme="light"] .content pre span[style*="color:#d08770"]{color:#8a3a13!important}
+:root[data-theme="light"] .content pre span[style*="color:#b48ead"]{color:#7c3aed!important}
+:root[data-theme="light"] .content pre pre[style]{background-color:#f6f6f7!important}
+:root[data-theme="light"] .content pre pre[style*="background-color:#2b303b"]{background-color:transparent!important}
+:root[data-theme="dark"] .content pre pre[style*="background-color:#2b303b"]{background-color:transparent!important}
+:root[data-theme="dark"] .content pre[style]{background-color:#111827!important}
+
+/* Language switcher in topnav */
+.lang-select{position:relative;margin-left:8px}
+.lang-btn-toggle{background:none;border:1px solid var(--border);border-radius:var(--radius);padding:5px 10px;font-family:var(--font-sans);font-size:12.5px;font-weight:600;color:var(--fg-muted);cursor:pointer;display:flex;align-items:center;gap:6px}
+.lang-btn-toggle:hover{border-color:var(--brand);color:var(--brand)}
+.lang-menu{position:absolute;top:calc(100% + 4px);right:0;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:4px;min-width:130px;box-shadow:0 6px 18px rgba(0,0,0,.12);display:none;z-index:100}
+.lang-menu.open{display:block}
+.lang-menu a{display:block;padding:6px 10px;font-size:13px;color:var(--fg);border-radius:4px;text-decoration:none}
+.lang-menu a:hover{background:var(--bg-elev);text-decoration:none}
+.lang-menu a[aria-current="true"]{color:var(--brand);font-weight:600}
+
+/* Landing feature cards animation */
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.docs-hero-badges span{animation:fadeUp .4s ease-out backwards}
+.docs-hero-badges span:nth-child(1){animation-delay:.05s}
+.docs-hero-badges span:nth-child(2){animation-delay:.10s}
+.docs-hero-badges span:nth-child(3){animation-delay:.15s}
+.docs-hero-badges span:nth-child(4){animation-delay:.20s}
+.docs-hero-badges span:nth-child(5){animation-delay:.25s}
+.docs-hero-badges span:nth-child(6){animation-delay:.30s}
+@media (prefers-reduced-motion:reduce){.docs-hero-badges span{animation:none}}
+
+
+/* -- Landing page components ------------------------------------- */
+.docs-shell:has(.landing-features){padding-bottom:0}
+.landing-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:8px 0 40px}
+.landing-feature{padding:24px;border:1px solid var(--border);border-radius:12px;background:var(--bg-elev);transition:.2s ease}
+.landing-feature:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,0,0,.08)}
+.landing-feature-icon{width:40px;height:40px;border-radius:10px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:20px;font-weight:700;font-family:var(--font-serif);margin-bottom:14px}
+.landing-feature h3{margin:0 0 6px;font-family:var(--font-serif);font-size:1.15rem;font-weight:600}
+.landing-feature p{margin:0;font-size:14.5px;color:var(--fg-muted);line-height:1.55}
+.landing-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 40px}
+.btn-large{padding:12px 22px;font-size:14.5px}
+.landing-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:12px 0 40px}
+.landing-link-card{display:block;padding:22px 24px;border:1px solid var(--border);border-radius:12px;background:var(--bg-elev);color:var(--fg);text-decoration:none;transition:.15s ease}
+.landing-link-card:hover{border-color:var(--brand);text-decoration:none;transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,0,0,.08)}
+.landing-link-card h3{margin:0 0 6px;font-family:var(--font-serif);font-size:1.05rem;font-weight:600;color:var(--brand)}
+.landing-link-card p{margin:0;font-size:14px;color:var(--fg-muted);line-height:1.5}
+/* Make the docs-hero on landing more spacious and centred */
+.landing-index .docs-shell{grid-template-columns:minmax(0,1fr)}
+.landing-index .sidebar,.landing-index .toc{display:none}
+.landing-index .docs-main{padding:32px 44px 96px;max-width:1120px;margin:0 auto}
+.landing-index .docs-hero{text-align:center;padding:80px 0 48px;border-bottom:none}
+.landing-index .docs-hero h1{font-size:clamp(2.5rem,5vw,3.75rem)}
+.landing-index .docs-hero-tagline{font-size:1.25rem;margin-left:auto;margin-right:auto;max-width:720px}
+.landing-index .docs-hero-badges{justify-content:center}
+.landing-index .docs-hero-actions{justify-content:center}
+.landing-index .content{max-width:none}
+
+
+/* -- Search + Ask-AI dialog ------------------------------------- */
+.ra-dialog{position:fixed;inset:0;background:none;border:none;padding:0;max-width:none;max-height:none;width:100%;height:100%;z-index:200}
+.ra-dialog::backdrop{background:color-mix(in oklab,var(--fg) 55%,transparent);backdrop-filter:blur(4px)}
+.ra-dialog[open]{display:grid;place-items:start center}
+.ra-dialog-inner{background:var(--bg);border:1px solid var(--border);border-radius:14px;width:min(680px,92vw);margin-top:calc(var(--nav-h) + 24px);max-height:calc(100vh - var(--nav-h) - 60px);display:flex;flex-direction:column;box-shadow:0 24px 48px rgba(0,0,0,.28);overflow:hidden}
+.ra-dialog-tabs{display:flex;border-bottom:1px solid var(--border);padding:6px 12px 0}
+.ra-dialog-tabs button{background:none;border:none;padding:9px 14px;font:inherit;font-size:13.5px;font-weight:600;color:var(--fg-muted);cursor:pointer;border-bottom:2px solid transparent}
+.ra-dialog-tabs button[aria-selected="true"]{color:var(--brand);border-bottom-color:var(--brand)}
+.ra-dialog-search{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.ra-dialog-search svg{width:16px;height:16px;color:var(--fg-subtle)}
+.ra-dialog-search input{flex:1;background:none;border:none;outline:none;font:inherit;font-size:15px;color:var(--fg)}
+.ra-dialog-search kbd{font-family:var(--font-mono);font-size:11.5px;border:1px solid var(--border);border-radius:4px;padding:1px 6px;background:var(--bg-elev);color:var(--fg-subtle)}
+.ra-dialog-body{overflow-y:auto;padding:6px 0}
+.ra-dialog-hint{padding:12px 18px;color:var(--fg-subtle);font-size:13px}
+.ra-result{display:block;padding:10px 18px;color:var(--fg);text-decoration:none;border-left:3px solid transparent}
+.ra-result:hover,.ra-result:focus,.ra-result.active{background:var(--bg-elev);border-left-color:var(--brand);text-decoration:none}
+.ra-result-title{font-weight:650;font-size:14px;margin-bottom:2px}
+.ra-result-url{font-size:12px;color:var(--fg-subtle);font-family:var(--font-mono)}
+.ra-result-snippet{font-size:13px;color:var(--fg-muted);margin-top:4px;line-height:1.4}
+.ra-result-snippet mark{background:var(--brand-soft);color:var(--brand-strong);border-radius:2px;padding:0 2px}
+.ra-ask-panel{padding:16px 18px}
+.ra-ask-panel textarea{width:100%;min-height:80px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font:inherit;font-size:14px;color:var(--fg);resize:vertical}
+.ra-ask-panel .btn{margin-top:10px}
+.ra-ask-answer{margin-top:16px;padding:14px 16px;background:var(--bg-elev);border-radius:8px;font-size:14px;line-height:1.55;color:var(--fg)}
+.ra-ask-answer h4{margin:0 0 8px;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--fg-subtle)}
+.ra-ask-answer ul{margin:6px 0;padding-left:1.2em}
+.ra-ask-answer a{color:var(--brand);font-weight:500}
+
+
+/* Animated TUI demo (CSS-only, video-equivalent) */
+.tui-demo{max-width:820px;margin:16px auto 32px;border-radius:12px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.25);background:#0d1117;color:#e6edf3;font-family:var(--font-mono);font-size:13px;line-height:1.5;position:relative}
+.tui-demo-titlebar{background:#161b22;padding:8px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+.tui-demo-dot{width:10px;height:10px;border-radius:50%}
+.tui-demo-dot.r{background:#ff5f56}
+.tui-demo-dot.y{background:#ffbd2e}
+.tui-demo-dot.g{background:#27c93f}
+.tui-demo-title{font-size:12px;color:#8b949e;margin-left:auto;margin-right:auto;font-family:var(--font-sans)}
+.tui-demo-body{padding:16px 20px;min-height:280px;position:relative}
+.tui-line{opacity:0;animation:tuiFade .3s ease-out forwards}
+.tui-line.you{color:#79c0ff}
+.tui-line.agent{color:#e6edf3}
+.tui-line.tool{color:#a5d6ff;background:rgba(56,139,253,.1);padding:4px 8px;border-radius:4px;margin:6px 0;display:block}
+.tui-line.dim{color:#8b949e}
+.tui-line-1{animation-delay:.6s}
+.tui-line-2{animation-delay:1.4s}
+.tui-line-3{animation-delay:2.2s}
+.tui-line-4{animation-delay:3.0s}
+.tui-line-5{animation-delay:3.8s}
+.tui-line-6{animation-delay:4.6s}
+.tui-line-7{animation-delay:5.4s}
+.tui-line-8{animation-delay:6.2s}
+.tui-line-9{animation-delay:7.0s}
+@keyframes tuiFade{from{opacity:0;transform:translateY(2px)}to{opacity:1;transform:none}}
+.tui-cursor::after{content:"█";display:inline-block;animation:tuiBlink 1s steps(2) infinite;margin-left:4px;color:#7ce38b}
+@keyframes tuiBlink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.tui-line{opacity:1;animation:none}.tui-cursor::after{animation:none}}
+.tui-prompt{color:#7ce38b;font-weight:600;margin-right:8px}
+
+
+/* TUI demo interactive controls */
+.tui-demo-controls{display:flex;gap:8px;align-items:center;padding:6px 12px;background:#161b22;border-top:1px solid rgba(255,255,255,.08);font-family:var(--font-sans);font-size:11.5px;color:#8b949e}
+.tui-demo-controls button{background:none;border:1px solid rgba(255,255,255,.15);color:#c9d1d9;padding:3px 10px;border-radius:4px;font:inherit;font-size:11.5px;cursor:pointer}
+.tui-demo-controls button:hover{border-color:#7aa4ff;color:#7aa4ff}
+.tui-demo-controls .spacer{flex:1}
+.tui-demo-controls kbd{font-family:var(--font-mono);font-size:10.5px;background:rgba(255,255,255,.08);padding:1px 4px;border-radius:3px}
+.tui-demo.paused .tui-line{animation-play-state:paused}
+
+
+/* -- WCAG 2.2 AA/AAA contrast overrides caught by Pa11y ---------- */
+/* fab-help: darken background so white ? hits ≥3:1 (was 2.45:1) */
+.fab-help{background:#0f2a75!important;border-color:var(--bg)}
+.fab-help:hover{background:#0a1f5c!important;color:#fff}
+
+/* Syntax highlighter (SSG emits base16-ocean inline colors on dark pre).
+   We override with AAA-safe replacements for both light and dark themes. */
+:root .content pre[style] span[style*="color:#65737e"]{color:#a8b2c0!important} /* comment */
+:root .content pre[style] span[style*="color:#bf616a"]{color:#ff9aa2!important} /* red / keyword */
+:root .content pre[style] span[style*="color:#d08770"]{color:#ffbb8a!important} /* orange */
+:root .content pre[style] span[style*="color:#ebcb8b"]{color:#f0d99f!important} /* yellow */
+:root .content pre[style] span[style*="color:#a3be8c"]{color:#c8e6b0!important} /* green */
+:root .content pre[style] span[style*="color:#96b5b4"]{color:#b8d6d5!important} /* cyan */
+:root .content pre[style] span[style*="color:#8fa1b3"]{color:#a8c8ff!important} /* blue */
+:root .content pre[style] span[style*="color:#b48ead"]{color:#d3aacd!important} /* purple */
+
+/* In light-theme code blocks (background:#f6f6f7 via our earlier override) — restore darker inks */
+:root[data-theme="light"] .content pre[style] span[style*="color:#65737e"]{color:#4b5563!important}
+:root[data-theme="light"] .content pre[style] span[style*="color:#bf616a"]{color:#991b1b!important}
+:root[data-theme="light"] .content pre[style] span[style*="color:#d08770"]{color:#7c2d12!important}
+:root[data-theme="light"] .content pre[style] span[style*="color:#ebcb8b"]{color:#78350f!important}
+:root[data-theme="light"] .content pre[style] span[style*="color:#a3be8c"]{color:#065f46!important}
+:root[data-theme="light"] .content pre[style] span[style*="color:#96b5b4"]{color:#0e5c4a!important}
+:root[data-theme="light"] .content pre[style] span[style*="color:#8fa1b3"]{color:#1e40af!important}
+:root[data-theme="light"] .content pre[style] span[style*="color:#b48ead"]{color:#6b21a8!important}
+
+
+/* Pa11y: .btn-primary must hold ≥4.5:1 in both themes. Force darker brand bg. */
+.btn-primary{background:#0f2a75!important;color:#fff!important}
+.btn-primary:hover{background:#0a1f5c!important;color:#fff!important}
+:root[data-theme="dark"] .btn-primary{background:#1e3a8a!important;color:#fff!important}
+:root[data-theme="dark"] .btn-primary:hover{background:#1e40af!important;color:#fff!important}
+
+
+/* Interactive TUI input */
+.tui-input-form{display:flex;align-items:center;padding:8px 20px 12px;background:#0d1117;border-top:1px solid rgba(255,255,255,.08)}
+.tui-input-form .tui-prompt{color:#7ce38b;font-weight:600;margin-right:8px;font-family:var(--font-mono)}
+.tui-input{flex:1;background:none;border:none;outline:none;color:#e6edf3;font-family:var(--font-mono);font-size:13px;caret-color:#7ce38b}
+.tui-input::placeholder{color:#484f58}
+.tui-line.user-echo{color:#79c0ff}
+.tui-line.rousseau{color:#e6edf3;padding-left:16px}
+.tui-line.rousseau strong{color:#d2a8ff;font-weight:600}
+.tui-line.tool-live{color:#a5d6ff;background:rgba(56,139,253,.14);padding:3px 8px;border-radius:4px;margin:3px 20px;font-size:12.5px;display:inline-block}
+.tui-line.error{color:#ffa198}
+
+.visually-hidden{position:absolute;clip:rect(0 0 0 0);width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;white-space:nowrap;border:0}
+#ssg-search-btn{display:none!important}
+  </style>
+</head>
+<body class="landing-index" id="page-top" itemscope itemtype="http://schema.org/WebPage">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="fab-help" href="/troubleshooting/index.html" aria-label="Get help — troubleshooting" title="Get help">?</a>
+  <div class="sr-status" id="sr-status" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-inner">
+      <button class="mobile-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation" id="mobileToggle">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <a class="brand" href="/">
+        <span class="brand-mark"><span>r</span></span>
+        <span class="brand-name"><b>rousseau</b>-agent · docs</span>
+      </a>
+      <button class="topnav-search" type="button" aria-label="Search" id="topnavSearch">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span>Search docs</span>
+        <kbd>⌘K</kbd>
+      </button>
+      <div class="topnav-links">
+        <a href="https://github.com/sebastienrousseau/rousseau-agent">GitHub</a>
+        <a href="/changelog/index.html">Changelog</a>
+      </div>
+      <div class="lang-select">
+        <button type="button" class="lang-btn-toggle" id="verToggle" aria-haspopup="true" aria-expanded="false" aria-label="Version" title="Docs version">
+          <span id="verLabel">latest</span>
+        </button>
+        <div class="lang-menu" id="verMenu" role="menu">
+          <a href="/" data-ver="latest" role="menuitem" aria-current="true">latest (main)</a>
+          <a href="/v0.6/" data-ver="0.6" role="menuitem">v0.6</a>
+          <a href="https://github.com/sebastienrousseau/rousseau-agent/releases" role="menuitem">All releases</a>
+        </div>
+      </div>
+      <div class="lang-select">
+        <button type="button" class="lang-btn-toggle" id="langToggle" aria-haspopup="true" aria-expanded="false" aria-label="Language">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+          <span id="langLabel">EN</span>
+        </button>
+        <div class="lang-menu" id="langMenu" role="menu">
+          <a href="/" data-lang="en" role="menuitem">English (GB)</a>
+          <a href="/fr/" data-lang="fr" role="menuitem">Français</a>
+          <a href="/de/" data-lang="de" role="menuitem">Deutsch</a>
+          <a href="/es/" data-lang="es" role="menuitem">Español</a>
+          <a href="/ja/" data-lang="ja" role="menuitem">日本語</a>
+          <a href="/pt-BR/" data-lang="pt-BR" role="menuitem">Português (BR)</a>
+          <a href="/zh-Hans/" data-lang="zh-CN" role="menuitem">中文 (简体)</a>
+        </div>
+      </div>
+      <button class="theme-btn" type="button" aria-label="Toggle theme" id="themeToggle">
+        <svg class="sun-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Documentation sections">
+      <div class="sidebar-group"><p class="sidebar-heading">Getting started</p><ul class="sidebar-list"><li><a href="/">Overview</a></li><li><a href="/quickstart/index.html"><strong>Quickstart</strong></a></li><li><a href="/getting-started/index.html">Introduction</a></li><li><a href="/getting-started/installation/index.html">Installation</a></li><li><a href="/getting-started/learning-path/index.html">Learning path</a></li><li><a href="/getting-started/platform-support/index.html">Platform support</a></li><li><a href="/getting-started/first-transport/index.html">First transport</a></li><li><a href="/getting-started/updating/index.html">Updating</a></li><li><a href="/concepts/index.html">Concepts</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Tutorials</p><ul class="sidebar-list"><li><a href="/tutorials/">All tutorials</a></li><li><a href="/tutorials/build-a-code-review-bot/index.html">Code review bot</a></li><li><a href="/tutorials/nightly-changelog/index.html">Nightly changelog</a></li><li><a href="/tutorials/deploy-to-a-vps/index.html">Deploy to a VPS</a></li><li><a href="/tutorials/expose-tools-via-mcp/index.html">Expose tools via MCP</a></li><li><a href="/tutorials/harden-approver-policy/index.html">Harden approver policy</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Guides</p><ul class="sidebar-list"><li><a href="/guides/">All guides</a></li><li><a href="/guides/scheduled-tasks/index.html">Scheduled tasks</a></li><li><a href="/guides/self-hosted-vllm/index.html">Self-hosted vLLM</a></li><li><a href="/guides/kubernetes-deployment/index.html">Kubernetes deployment</a></li><li><a href="/guides/audit-approval-policies/index.html">Audit approval policies</a></li><li><a href="/guides/observability/index.html">Observability</a></li><li><a href="/guides/read-only-mode/index.html">Read-only mode</a></li><li><a href="/guides/multi-provider/index.html">Multi-provider</a></li><li><a href="/guides/rate-limits/index.html">Rate limits</a></li><li><a href="/guides/file-management/index.html">File management</a></li><li><a href="/guides/managing-workspaces/index.html">Managing workspaces</a></li><li><a href="/guides/prompt-injection/index.html">Prompt injection</a></li><li><a href="/guides/telemetry/index.html">Telemetry (there is none)</a></li><li><a href="/guides/rate-model-swap/index.html">Hot-swap models</a></li><li><a href="/guides/session-management/index.html">Session management</a></li><li><a href="/guides/context-management/index.html">Context management</a></li><li><a href="/guides/production-deployment/index.html">Production deployment</a></li><li><a href="/guides/enterprise-onboarding/index.html">Enterprise onboarding</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Providers</p><ul class="sidebar-list"><li><a href="/providers/">Overview</a></li><li><a href="/providers/claudecli/index.html">claudecli (default)</a></li><li><a href="/providers/anthropic/index.html">Anthropic API</a></li><li><a href="/providers/bedrock/index.html">AWS Bedrock</a></li><li><a href="/providers/vertex/index.html">Google Vertex AI</a></li><li><a href="/providers/openai-compatible/index.html">OpenAI-compatible</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Transports</p><ul class="sidebar-list"><li><a href="/transports/">Overview</a></li><li><a href="/transports/whatsapp/index.html">WhatsApp</a></li><li><a href="/transports/signal/index.html">Signal</a></li><li><a href="/transports/telegram/index.html">Telegram</a></li><li><a href="/transports/matrix/index.html">Matrix</a></li><li><a href="/transports/slack/index.html">Slack</a></li><li><a href="/transports/discord/index.html">Discord</a></li><li><a href="/transports/imessage/index.html">iMessage</a></li><li><a href="/transports/email/index.html">Email</a></li><li><a href="/transports/sms/index.html">SMS</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">User guide</p><ul class="sidebar-list"><li><a href="/user-guide/cli/index.html">CLI</a></li><li><a href="/user-guide/tui/index.html">TUI</a></li><li><a href="/user-guide/tools/index.html">Tools</a></li><li><a href="/user-guide/approval-policies/index.html">Approval policies</a></li><li><a href="/user-guide/voice-mode/index.html">Voice mode</a></li><li><a href="/user-guide/compression-recall/index.html">Compression &amp; recall</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Reference</p><ul class="sidebar-list"><li><a href="/configuration/index.html">Configuration</a></li><li><a href="/reference/config-schema/index.html">Config schema</a></li><li><a href="/reference/config/provider/index.html">Config: provider</a></li><li><a href="/reference/config/agent/index.html">Config: agent</a></li><li><a href="/reference/config/state/index.html">Config: state</a></li><li><a href="/reference/config/log/index.html">Config: log</a></li><li><a href="/reference/config/transports/index.html">Config: transports</a></li><li><a href="/reference/environment-variables/index.html">Environment variables</a></li><li><a href="/reference/cli-commands/index.html">CLI commands (index)</a></li><li><a href="/reference/commands/chat/index.html">rousseau chat</a></li><li><a href="/reference/commands/whatsapp/index.html">rousseau whatsapp</a></li><li><a href="/reference/commands/signal/index.html">rousseau signal</a></li><li><a href="/reference/commands/telegram/index.html">rousseau telegram</a></li><li><a href="/reference/commands/matrix/index.html">rousseau matrix</a></li><li><a href="/reference/commands/slack/index.html">rousseau slack</a></li><li><a href="/reference/commands/discord/index.html">rousseau discord</a></li><li><a href="/reference/commands/email/index.html">rousseau email</a></li><li><a href="/reference/commands/imessage/index.html">rousseau imessage</a></li><li><a href="/reference/commands/sms/index.html">rousseau sms</a></li><li><a href="/reference/commands/mcp/index.html">rousseau mcp</a></li><li><a href="/reference/commands/cron/index.html">rousseau cron</a></li><li><a href="/reference/exit-codes/index.html">Exit codes</a></li><li><a href="/reference/logs/index.html">Log messages</a></li><li><a href="/reference/session-store/index.html">Session store</a></li><li><a href="/reference/tool-schemas/index.html">Tool schemas</a></li><li><a href="/agent-loop/index.html">Agent loop &amp; library</a></li><li><a href="/skills/index.html">Skills</a></li><li><a href="/cron/index.html">Cron scheduler</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">MCP</p><ul class="sidebar-list"><li><a href="/mcp/index.html">MCP server</a></li><li><a href="/mcp/compatibility/index.html">Client compatibility</a></li><li><a href="/mcp/exposed-tools/index.html">Exposed tools</a></li><li><a href="/mcp/exposed-resources/index.html">Exposed resources</a></li></ul></div>
+            <div class="sidebar-group"><p class="sidebar-heading">Recipes</p><ul class="sidebar-list"><li><a href="/recipes/">All recipes</a></li><li><a href="/recipes/oncall-slack-triage/index.html">Oncall Slack triage</a></li><li><a href="/recipes/nightly-git-summary/index.html">Nightly git summary</a></li><li><a href="/recipes/email-triage/index.html">Email triage</a></li><li><a href="/recipes/code-review-bot/index.html">Code-review bot</a></li><li><a href="/recipes/security-audit-cron/index.html">Security audit cron</a></li><li><a href="/recipes/whatsapp-pair-programming/index.html">WhatsApp pair programming</a></li><li><a href="/recipes/matrix-room-monitor/index.html">Matrix room monitor</a></li><li><a href="/recipes/discord-community-bot/index.html">Discord community bot</a></li><li><a href="/recipes/mcp-desktop-integration/index.html">MCP + Claude Desktop</a></li><li><a href="/recipes/bedrock-multi-account/index.html">Bedrock multi-account</a></li><li><a href="/recipes/airgapped-deployment/index.html">Air-gapped deployment</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Best practices</p><ul class="sidebar-list"><li><a href="/best-practices/">Overview</a></li><li><a href="/best-practices/secret-management/index.html">Secret management</a></li><li><a href="/best-practices/network-egress/index.html">Network egress</a></li><li><a href="/best-practices/session-hygiene/index.html">Session hygiene</a></li><li><a href="/best-practices/approval-rules/index.html">Approval rules</a></li><li><a href="/best-practices/multi-tenant/index.html">Multi-tenant</a></li><li><a href="/best-practices/disaster-recovery/index.html">Disaster recovery</a></li><li><a href="/best-practices/cost-control/index.html">Cost control</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">FAQ</p><ul class="sidebar-list"><li><a href="/faq/general/index.html">General</a></li><li><a href="/faq/security/index.html">Security</a></li><li><a href="/faq/providers/index.html">Providers</a></li><li><a href="/faq/transports/index.html">Transports</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Migrations</p><ul class="sidebar-list"><li><a href="/migrations/overview/index.html">Overview</a></li><li><a href="/migrations/0.4-to-0.5/index.html">0.4 → 0.5</a></li><li><a href="/migrations/0.5-to-0.6/index.html">0.5 → 0.6</a></li><li><a href="/migrations/container-migration/index.html">Bare-metal → container</a></li><li><a href="/migrations/provider-migration/index.html">Switching providers</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Community</p><ul class="sidebar-list"><li><a href="/community/">Overview</a></li><li><a href="/community/showcase/index.html">Showcase</a></li><li><a href="/community/contributing/index.html">Contributing</a></li><li><a href="/community/code-of-conduct/index.html">Code of conduct</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Operations</p><ul class="sidebar-list"><li><a href="/deployment/index.html">Deployment</a></li><li><a href="/security/index.html">Security</a></li><li><a href="/troubleshooting/index.html">Troubleshooting</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Developer guide</p><ul class="sidebar-list"><li><a href="/developer-guide/">Overview</a></li><li><a href="/developer-guide/architecture/index.html">Architecture</a></li><li><a href="/developer-guide/add-a-transport/index.html">Add a transport</a></li><li><a href="/developer-guide/add-a-provider/index.html">Add a provider</a></li><li><a href="/developer-guide/add-a-tool/index.html">Add a tool</a></li><li><a href="/developer-guide/testing/index.html">Testing</a></li><li><a href="/developer-guide/contributing/index.html">Contributing</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Use cases</p><ul class="sidebar-list"><li><a href="/use-cases/">Overview</a></li><li><a href="/use-cases/oncall-buddy/index.html">Oncall buddy</a></li><li><a href="/use-cases/mobile-review/index.html">Mobile review</a></li><li><a href="/use-cases/regulated-industry/index.html">Regulated industry</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Experimental</p><ul class="sidebar-list"><li><a href="/experimental/index.html">All experimental</a></li></ul></div>
+      <div class="sidebar-group"><p class="sidebar-heading">Meta</p><ul class="sidebar-list"><li><a href="/changelog/index.html">Changelog</a></li><li><a href="/contact/index.html">Contact &amp; support</a></li><li><a href="/privacy/index.html">Privacy</a></li></ul></div>
+    </aside>
+
+    <main id="main" class="docs-main" aria-label="Main content">
+      <div class="docs-hero">
+        <p class="docs-hero-eyebrow">rousseau-agent · v8b92c2b</p>
+        <h1>{{name}}</h1>
+        <p class="docs-hero-tagline">{{subtitle}}</p>
+        <div class="docs-hero-badges">
+          <span>9 chat transports</span>
+          <span>5 LLM providers</span>
+          <span>MCP server</span>
+          <span>SLSA-3 provenance</span>
+          <span>cosign · SBOM</span>
+          <span>Go 1.26+</span>
+        </div>
+        <div class="docs-hero-actions">
+          <a class="btn btn-primary" href="/getting-started/index.html">Get started →</a>
+          <a class="btn btn-outline" href="https://github.com/sebastienrousseau/rousseau-agent">View on GitHub</a>
+        </div>
+      </div>
+      <div class="content">{{!content}}</div>
+    </main>
+  </div>
+
+  <footer class="footer">{{copyright}}
+  <div class="carbon-badge" aria-label="Sustainability">
+    <span class="carbon-dot" aria-hidden="true">●</span>
+    <span>Small pages · single-origin fonts · no telemetry · <a href="/reference/carbon/" style="color:inherit;text-decoration:underline">carbon posture</a></span>
+  </div>
+  </footer>
+
+  
+  <script type="application/ld+json" id="breadcrumb-jsonld">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docs","item":"https://docs.rousseau-agent.dev/"}]}
+  </script>
+  <script type="application/ld+json">
+{"@context":"http://schema.org/","@type":"TechArticle","headline":"{{title}}","datePublished":"{{last_build_date}}","dateModified":"{{item_pub_date}}","description":"{{description}}","image":{"@type":"ImageObject","height":"2048","width":"2048","url":"{{logo}}"},"mainEntityOfPage":{"@type":"WebPage","@id":"{{id}}","name":"{{subtitle}}"},"author":"{{author}}","copyrightHolder":{"@type":"Person","@id":"{{author}}"},"copyrightYear":"{{copyright}}","creator":{"@type":"Person","@id":"{{author}}"},"inLanguage":"{{language}}","name":"{{name}}","publisher":{"@type":"Person","@id":"{{author}}"}}
+  </script>
+  <script>
+(function(){
+  var r=document.documentElement,sw=document.getElementById('themeToggle'),mt=document.getElementById('mobileToggle'),sb=document.getElementById('sidebar');
+  function setTheme(v){r.setAttribute('data-theme',v);try{localStorage.setItem('rousseau-docs-theme',v)}catch(e){}}
+  try{var saved=localStorage.getItem('rousseau-docs-theme');if(saved)setTheme(saved);else if(matchMedia('(prefers-color-scheme:dark)').matches)setTheme('dark')}catch(e){}
+  if(sw)sw.addEventListener('click',function(){setTheme(r.getAttribute('data-theme')==='dark'?'light':'dark')});
+  if(mt)mt.addEventListener('click',function(){var ex=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',!ex);sb.classList.toggle('open')});
+  // Highlight active sidebar link
+  var path=location.pathname.replace(/index\.html$/,'').replace(/\/$/,'')||'/';
+  document.querySelectorAll('.sidebar-list a').forEach(function(a){
+    var h=a.getAttribute('href').replace(/index\.html$/,'').replace(/\/$/,'')||'/';
+    if(h===path){a.classList.add('active');a.setAttribute('aria-current','page')};
+  });
+  // Wire top-nav search button to the SSG search modal
+  var s=document.getElementById('topnavSearch');
+  if(s)s.addEventListener('click',function(){var b=document.getElementById('ssg-search-btn');if(b)b.click();else{var o=document.getElementById('ssg-search-overlay');if(o){o.classList.add('active');var inp=document.getElementById('ssg-search-input');if(inp){inp.value='';inp.focus()}}}});
+
+  // Copy buttons on code blocks
+  document.querySelectorAll('.content pre').forEach(function(pre){
+    if(pre.querySelector('.copy-btn'))return;
+    var btn=document.createElement('button');btn.className='copy-btn';btn.type='button';btn.setAttribute('aria-label','Copy code');btn.textContent='Copy';
+    btn.addEventListener('click',function(){
+      var t=(pre.querySelector('code')||pre).innerText;
+      if(navigator.clipboard)navigator.clipboard.writeText(t).then(function(){btn.textContent='Copied';btn.classList.add('copied');var s=document.getElementById('sr-status');if(s)s.textContent='Code copied to clipboard';setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');if(s)s.textContent=''},1500)});
+    });
+    pre.appendChild(btn);
+  });
+  // Tabs (data-tabs group; button[role=tab] siblings; sibling .tab-panel[role=tabpanel])
+  document.querySelectorAll('.tabs').forEach(function(t){
+    var tabs=t.querySelectorAll('[role="tab"]'),panels=t.querySelectorAll('[role="tabpanel"]');
+    tabs.forEach(function(tab,i){
+      tab.setAttribute('id', (t.dataset.tabs||'tabs')+'-t'+i);
+      panels[i]&&panels[i].setAttribute('aria-labelledby', tab.id);
+      tab.addEventListener('click',function(){
+        tabs.forEach(function(x,j){x.setAttribute('aria-selected',j===i);panels[j]&&panels[j].toggleAttribute('hidden',j!==i)});
+      });
+      tab.addEventListener('keydown',function(e){
+        var idx=Array.from(tabs).indexOf(e.target);
+        if(e.key==='ArrowRight'){tabs[(idx+1)%tabs.length].focus();tabs[(idx+1)%tabs.length].click()}
+        if(e.key==='ArrowLeft'){tabs[(idx-1+tabs.length)%tabs.length].focus();tabs[(idx-1+tabs.length)%tabs.length].click()}
+      });
+    });
+  });
+  // Breadcrumbs
+  var bc=document.getElementById('breadcrumbs');
+  if(bc){
+    var segs=location.pathname.replace(/^\/|\/$|index\.html$/g,'').split('/').filter(Boolean);
+    var parts=['<a href="/">Docs</a>'];var acc='';
+    segs.forEach(function(s,i){
+      acc+='/'+s;
+      var label=s.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase()});
+      if(i===segs.length-1)parts.push('<span class="current">'+label+'</span>');
+      else parts.push('<a href="'+acc+'/">'+label+'</a>');
+    });
+    if(segs.length)bc.innerHTML=parts.join('<span class="sep">/</span>');
+    else bc.style.display='none';
+  }
+  // Prev/Next pagination from sidebar order
+  var pag=document.getElementById('pagination');
+  if(pag){
+    var links=Array.from(document.querySelectorAll('.sidebar-list a')).map(function(a){return {href:a.getAttribute('href'),title:a.textContent.trim()}});
+    var cur=location.pathname.replace(/index\.html$/,'').replace(/\/$/,'')||'/';
+    var idx=links.findIndex(function(l){var h=l.href.replace(/index\.html$/,'').replace(/\/$/,'')||'/';return h===cur});
+    if(idx>=0){
+      var prev=links[idx-1],next=links[idx+1];
+      var out='';
+      if(prev)out+='<a href="'+prev.href+'"><p class="pagination-label">Previous</p><p class="pagination-title">← '+prev.title+'</p></a>';else out+='<span></span>';
+      if(next)out+='<a class="next" href="'+next.href+'"><p class="pagination-label">Next</p><p class="pagination-title">'+next.title+' →</p></a>';else out+='<span></span>';
+      pag.innerHTML=out;
+    } else { pag.style.display='none' }
+  }
+  // Collapsible sidebar groups (click heading)
+  document.querySelectorAll('.sidebar-heading').forEach(function(h){
+    h.setAttribute('role','button');h.setAttribute('tabindex','0');h.setAttribute('aria-expanded','true');
+    var toggle=function(){var g=h.parentElement;g.classList.toggle('collapsed');h.setAttribute('aria-expanded',!g.classList.contains('collapsed'))};
+    h.addEventListener('click',toggle);
+    h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+  });
+
+  // BreadcrumbList JSON-LD at runtime
+  var bcJsonld=document.getElementById('breadcrumb-jsonld');
+  if(bcJsonld){
+    var segs=location.pathname.replace(/^\/|\/$|index\.html$/g,'').split('/').filter(Boolean);
+    var items=[{"@type":"ListItem","position":1,"name":"Docs","item":location.origin+"/"}];
+    var acc='';
+    segs.forEach(function(s,i){
+      acc+='/'+s;
+      var label=s.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase()});
+      items.push({"@type":"ListItem","position":i+2,"name":label,"item":location.origin+acc+'/'});
+    });
+    bcJsonld.textContent=JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":items});
+  }
+  // Auto-detect content type to add HowTo (for quickstart+tutorials) or FAQPage (troubleshooting)
+  var p=location.pathname;
+  function addJsonld(obj){var s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(obj);document.head.appendChild(s)}
+  if(p==='/quickstart/'||p==='/quickstart/index.html'||p.startsWith('/tutorials/')){
+    var steps=Array.from(document.querySelectorAll('.content h2')).map(function(h,i){return {"@type":"HowToStep","position":i+1,"name":h.textContent.trim(),"url":location.href+'#'+h.id}});
+    if(steps.length>1){addJsonld({"@context":"https://schema.org","@type":"HowTo","name":document.title,"description":(document.querySelector('meta[name="description"]')||{}).content||'','step':steps})}
+  }
+  if(p==='/troubleshooting/'||p==='/troubleshooting/index.html'){
+    var faqs=[];document.querySelectorAll('.content h3').forEach(function(h){
+      var a=h.nextElementSibling;var body='';while(a&&a.tagName!=='H3'&&a.tagName!=='H2'){body+=a.outerHTML;a=a.nextElementSibling}
+      if(body)faqs.push({"@type":"Question","name":h.textContent.trim(),"acceptedAnswer":{"@type":"Answer","text":body}});
+    });
+    if(faqs.length){addJsonld({"@context":"https://schema.org","@type":"FAQPage","mainEntity":faqs})}
+  }
+
+  // Runtime hreflang alternates (Phase 3 will fill actual translated content)
+  var langs=['fr','de','es','ja','pt-BR','zh-CN'];
+  langs.forEach(function(l){
+    if(document.querySelector('link[rel="alternate"][hreflang="'+l+'"]'))return;
+    var link=document.createElement('link');link.rel='alternate';link.hreflang=l;
+    link.href=location.origin+'/'+l+location.pathname;
+    document.head.appendChild(link);
+  });
+  if(!document.querySelector('link[rel="alternate"][hreflang="x-default"]')){
+    var xd=document.createElement('link');xd.rel='alternate';xd.hreflang='x-default';xd.href=location.origin+location.pathname;
+    document.head.appendChild(xd);
+  }
+
+  // Register service worker (offline / PWA)
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',function(){
+      navigator.serviceWorker.register('/sw.js').catch(function(){});
+    });
+  }
+  // Install prompt
+  var deferredPrompt=null;
+  window.addEventListener('beforeinstallprompt',function(e){
+    e.preventDefault(); deferredPrompt=e;
+    var btn=document.createElement('button'); btn.type='button';
+    btn.className='btn btn-outline'; btn.style.cssText='position:fixed;bottom:80px;right:20px;z-index:60;font-size:12px;padding:6px 12px';
+    btn.textContent='Install docs app'; btn.setAttribute('aria-label','Install rousseau docs as PWA');
+    btn.addEventListener('click',function(){deferredPrompt.prompt();deferredPrompt=null;btn.remove()});
+    document.body.appendChild(btn);
+  });
+
+  // -- Search + Ask AI ------------------------------------------------
+  var raDlg=document.getElementById('raDialog');
+  var raIdx=null;
+  function ensureIndex(){
+    if(raIdx)return Promise.resolve(raIdx);
+    return fetch('/search.json').then(function(r){return r.json()}).then(function(j){raIdx=j;return j});
+  }
+  function tokenise(s){return (s.toLowerCase().match(/[a-z][a-z0-9_-]{1,}/g)||[]).filter(function(w){return w.length>1});}
+  function scoreQuery(q){
+    var toks=tokenise(q);
+    var scores={};
+    toks.forEach(function(t){
+      var post=raIdx.postings[t]; if(!post)return;
+      post.forEach(function(p){ scores[p[0]]=(scores[p[0]]||0)+p[1]; });
+    });
+    var out=[];
+    Object.keys(scores).forEach(function(k){out.push([+k,scores[k]])});
+    out.sort(function(a,b){return b[1]-a[1]});
+    return out.slice(0,10);
+  }
+  function renderResults(q,list){
+    var box=document.getElementById('raSearchResults');
+    if(!list.length){box.innerHTML='<p class="ra-dialog-hint">No matches. Try a different phrase — the index is BM25-scored on title/description/body.</p>';return}
+    var qtoks=tokenise(q);
+    box.innerHTML=list.map(function(pair){
+      var d=raIdx.docs[pair[0]];
+      var desc=d.d||'';
+      qtoks.forEach(function(t){
+        var re=new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+        desc=desc.replace(re,'<mark>$1</mark>');
+      });
+      return '<a class="ra-result" href="'+d.u+'" role="option"><p class="ra-result-title">'+d.t+'</p><p class="ra-result-url">'+d.u+'</p><p class="ra-result-snippet">'+desc.slice(0,240)+'</p></a>';
+    }).join('');
+  }
+  function openDlg(){
+    ensureIndex().then(function(){
+      raDlg.showModal();
+      setTimeout(function(){document.getElementById('raSearchInput').focus()},50);
+    });
+  }
+  function switchTab(t){
+    document.querySelectorAll('.ra-dialog-tabs [role="tab"]').forEach(function(b){b.setAttribute('aria-selected',b.dataset.tab===t)});
+    document.getElementById('raSearchPane').hidden=t!=='search';
+    document.getElementById('raAskPane').hidden=t!=='ask';
+    if(t==='search')document.getElementById('raSearchInput').focus();
+    if(t==='ask')document.getElementById('raAskInput').focus();
+  }
+  // Wire dialog controls
+  if(raDlg){
+    document.getElementById('raTabSearch').addEventListener('click',function(){switchTab('search')});
+    document.getElementById('raTabAsk').addEventListener('click',function(){switchTab('ask')});
+    var si=document.getElementById('raSearchInput');
+    var debounce; si.addEventListener('input',function(){clearTimeout(debounce);debounce=setTimeout(function(){
+      var q=si.value.trim(); if(!q){renderResults('',[]);return}
+      renderResults(q, scoreQuery(q));
+    },80)});
+    // Ask flow: search index for context, present top 3 as "sources" + link out for full answer
+    document.getElementById('raAskGo').addEventListener('click',function(){
+      var q=document.getElementById('raAskInput').value.trim();
+      if(!q||!raIdx)return;
+      var out=document.getElementById('raAskAnswer');
+      // Step 1: try /qa.json direct-answer match
+      fetch('/qa.json').then(function(r){return r.json()}).then(function(qa){
+        var qToks=tokenise(q);
+        var best=null,bestScore=0;
+        (qa.pairs||[]).forEach(function(p){
+          var pToks=tokenise(p.q);
+          var overlap=0;
+          qToks.forEach(function(t){if(pToks.indexOf(t)>=0)overlap++});
+          var score=overlap / Math.max(1,Math.max(qToks.length,pToks.length));
+          if(score>bestScore){bestScore=score;best=p}
+        });
+        if(best&&bestScore>=0.5){
+          out.hidden=false;
+          out.innerHTML='<h4>Direct answer (from FAQ / Troubleshooting)</h4><p><strong>'+best.q+'</strong></p><p>'+best.a+'</p><p style="margin-top:8px;font-size:12.5px;color:var(--fg-subtle)">Source: <a href="'+best.src+'">'+best.src+'</a> · match score '+(bestScore*100).toFixed(0)+'%</p>';
+          return;
+        }
+        // Step 2: fall back to top BM25 sources
+        var top=scoreQuery(q).slice(0,3).map(function(pair){return raIdx.docs[pair[0]]});
+        if(!top.length){out.hidden=false;out.innerHTML='<h4>No relevant pages found</h4><p>Try rephrasing — the index covers 340+ pages.</p>';return}
+        var body='<h4>Answer sources (BM25 retrieval)</h4><p>No exact FAQ match. These pages are most likely to answer your question:</p><ul>';
+        top.forEach(function(d){body+='<li><a href="'+d.u+'">'+d.t+'</a> — '+(d.d||'')+'</li>'});
+        body+='</ul><p style="margin-top:10px;font-size:12.5px;color:var(--fg-subtle)">Tip: rousseau ships 250+ FAQ pairs. Ask more specifically to get a direct answer.</p>';
+        out.hidden=false; out.innerHTML=body;
+      });
+    });
+    // Close on Esc / backdrop click
+    raDlg.addEventListener('click',function(e){if(e.target===raDlg)raDlg.close()});
+    raDlg.addEventListener('keydown',function(e){if(e.key==='Escape')raDlg.close()});
+  }
+  // Keyboard shortcut Cmd/Ctrl+K opens dialog (overrides earlier binding)
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();openDlg()}
+  });
+  // Also wire the search button in topnav to open dialog
+  var tns=document.getElementById('topnavSearch'); if(tns){tns.addEventListener('click',openDlg)}
+  // Wire fab-help to open Ask AI tab instead of nav
+  var fh=document.querySelector('.fab-help'); if(fh){fh.addEventListener('click',function(e){e.preventDefault();openDlg();setTimeout(function(){switchTab('ask')},60)})}
+
+  // Version selector
+  var vt=document.getElementById('verToggle'),vm=document.getElementById('verMenu');
+  if(vt&&vm){
+    vt.addEventListener('click',function(e){e.stopPropagation();var open=vm.classList.toggle('open');vt.setAttribute('aria-expanded',open?'true':'false')});
+    document.addEventListener('click',function(){vm.classList.remove('open');vt.setAttribute('aria-expanded','false')});
+    var vMatch=location.pathname.match(/^\/v([0-9.]+)\//);var vLabel=document.getElementById('verLabel');
+    if(vMatch&&vLabel)vLabel.textContent='v'+vMatch[1];
+  }
+
+  // TUI demo replay controls
+  var tuiDemos=document.querySelectorAll('.tui-demo');
+  tuiDemos.forEach(function(d){
+    if(d.dataset.wired)return; d.dataset.wired='1';
+    var controls=document.createElement('div');
+    controls.className='tui-demo-controls';
+    controls.innerHTML='<span>▶ autoplaying</span><span class="spacer"></span><button type="button" data-act="replay" aria-label="Replay TUI demo">Replay</button><button type="button" data-act="pause" aria-label="Pause TUI demo">Pause</button><kbd>space</kbd> pause · <kbd>R</kbd> replay';
+    d.appendChild(controls);
+    controls.querySelector('[data-act="replay"]').addEventListener('click',function(){
+      d.querySelectorAll('.tui-line').forEach(function(l){var a=l.style.animation;l.style.animation='none';l.offsetHeight;l.style.animation=a});
+      controls.querySelector('span').textContent='▶ autoplaying';d.classList.remove('paused');
+    });
+    controls.querySelector('[data-act="pause"]').addEventListener('click',function(){
+      var paused=d.classList.toggle('paused');
+      controls.querySelector('span').textContent=paused?'⏸ paused':'▶ autoplaying';
+    });
+    // Keyboard shortcuts when demo is in view
+    var io=new IntersectionObserver(function(ent){ent.forEach(function(e){d.dataset.visible=e.isIntersecting?'1':''})},{threshold:.4});
+    io.observe(d);
+    document.addEventListener('keydown',function(e){
+      if(d.dataset.visible!=='1')return;
+      if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+      if(e.key===' '){e.preventDefault();controls.querySelector('[data-act="pause"]').click()}
+      if(e.key==='r'||e.key==='R'){controls.querySelector('[data-act="replay"]').click()}
+    });
+  });
+
+  // Interactive terminal REPL
+  var tuiForm=document.getElementById('tuiForm');
+  var tuiBody=document.getElementById('tuiBody');
+  var tuiInput=document.getElementById('tuiInput');
+  if(tuiForm&&tuiBody&&tuiInput){
+    function tuiEmit(cls,html){
+      var p=document.createElement('p'); p.className='tui-line '+cls; p.innerHTML=html; tuiBody.appendChild(p);
+      tuiBody.parentElement.scrollTop=tuiBody.parentElement.scrollHeight;
+    }
+    function respond(q){
+      var lower=q.toLowerCase().trim();
+      if(lower==='help'||lower==='?'){
+        tuiEmit('tool-live','→ tool_use help');
+        tuiEmit('rousseau','<strong>rousseau ›</strong> Try: <code>list transports</code>, <code>list providers</code>, <code>what does rousseau do</code>, <code>tell me about MCP</code>, <code>show me the config</code>, <code>who are you</code>, or ask anything else.');
+        return;
+      }
+      if(/list.*transport|transports/i.test(lower)){
+        tuiEmit('rousseau','<strong>rousseau ›</strong> Nine transports: WhatsApp · Signal · Telegram · Matrix · Slack · Discord · iMessage · SMS · Email. Every one implements the same <code>transport.Transport</code> interface. See <a href="/transports/" style="color:#7aa4ff">/transports/</a>.');
+        return;
+      }
+      if(/list.*provider|providers|llm|model/i.test(lower)){
+        tuiEmit('rousseau','<strong>rousseau ›</strong> Five provider families: claudecli (default, subprocess) · Anthropic API · AWS Bedrock · Google Vertex AI · OpenAI-compatible. See <a href="/providers/" style="color:#7aa4ff">/providers/</a>.');
+        return;
+      }
+      if(/mcp|model context/i.test(lower)){
+        tuiEmit('tool-live','→ tool_use read internal/mcp/server.go');
+        tuiEmit('tool-live','← tool_result 2,411 bytes');
+        tuiEmit('rousseau','<strong>rousseau ›</strong> MCP server: JSON-RPC 2.0 over stdio, spec revision 2024-11-05. Exposes tools + sessions. Any MCP-compatible client (Claude Desktop, Continue, Codeium) can drive rousseau. Start with <code>rousseau mcp</code>. See <a href="/mcp/" style="color:#7aa4ff">/mcp/</a>.');
+        return;
+      }
+      if(/config|configuration|yaml/i.test(lower)){
+        tuiEmit('tool-live','→ tool_use read internal/config/config.go');
+        tuiEmit('tool-live','← tool_result 76 mapstructure fields');
+        tuiEmit('rousseau','<strong>rousseau ›</strong> Every field lives in <code>internal/config/config.go</code>. Config at <code>~/.config/rousseau/config.yaml</code>; precedence flag &gt; env &gt; file &gt; default. Full reference at <a href="/configuration/" style="color:#7aa4ff">/configuration/</a>.');
+        return;
+      }
+      if(/what.*rousseau|about rousseau|introduce|who.*you|hello|hi\b/i.test(lower)){
+        tuiEmit('rousseau','<strong>rousseau ›</strong> I am rousseau-agent — a self-hosted, container-native coding agent. Go single binary. Nine chat transports. Five LLM providers. MCP-native. SLSA-3, cosign, SBOM. Zero telemetry. Ask me anything or press <kbd>Esc</kbd> to open the search dialog.');
+        return;
+      }
+      if(/security|slsa|cosign|sbom|supply/i.test(lower)){
+        tuiEmit('rousseau','<strong>rousseau ›</strong> SLSA Level 3 provenance, cosign-signed release checksums, CycloneDX SBOM, reproducible builds, rootless Podman with dropped capabilities, seccomp, non-root UID, no inbound HTTP surface. See <a href="/security/" style="color:#7aa4ff">/security/</a>.');
+        return;
+      }
+      if(/clear|cls/i.test(lower)){
+        while(tuiBody.children.length>3){tuiBody.removeChild(tuiBody.lastChild)}
+        return;
+      }
+      // Fallback: retrieve from BM25 index if available, else canned
+      if(typeof raIdx!=='undefined'&&raIdx){
+        var top=scoreQuery(q).slice(0,3);
+        if(top.length){
+          var docs=top.map(function(pair){return raIdx.docs[pair[0]]});
+          var msg='<strong>rousseau ›</strong> Retrieved from the docs index (BM25):<br>';
+          docs.forEach(function(d){msg+='· <a href="'+d.u+'" style="color:#7aa4ff">'+d.t+'</a><br>'});
+          tuiEmit('rousseau',msg);
+          return;
+        }
+      }
+      tuiEmit('rousseau','<strong>rousseau ›</strong> I do not have a canned answer for that. Try <code>help</code> for suggested prompts, or press <kbd>Ctrl</kbd>+<kbd>K</kbd> to open the search dialog.');
+    }
+    tuiForm.addEventListener('submit',function(e){
+      e.preventDefault();
+      var q=tuiInput.value.trim(); if(!q)return;
+      tuiEmit('user-echo','<span class="tui-prompt">you ›</span> '+q.replace(/</g,'&lt;'));
+      tuiInput.value='';
+      // Simulate thinking
+      var t=document.createElement('p'); t.className='tui-line dim'; t.textContent='thinking…'; tuiBody.appendChild(t);
+      setTimeout(function(){tuiBody.removeChild(t); respond(q)}, 350);
+    });
+    // Ctrl+L to clear
+    tuiInput.addEventListener('keydown',function(e){
+      if(e.ctrlKey && e.key==='l'){e.preventDefault(); while(tuiBody.children.length>3)tuiBody.removeChild(tuiBody.lastChild)}
+    });
+  }
+})();
+  </script>
+  <dialog class="ra-dialog" id="raDialog" aria-label="Search and ask AI">
+    <div class="ra-dialog-inner">
+      <div class="ra-dialog-tabs" role="tablist" aria-label="Search or ask AI">
+        <button role="tab" aria-selected="true" data-tab="search" id="raTabSearch">Search docs</button>
+        <button role="tab" aria-selected="false" data-tab="ask" id="raTabAsk">Ask AI</button>
+      </div>
+      <div id="raSearchPane" role="tabpanel" aria-labelledby="raTabSearch">
+        <div class="ra-dialog-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input id="raSearchInput" type="search" autocomplete="off" placeholder="Search across every page… (BM25, offline)" aria-label="Search query"/>
+          <kbd>Esc</kbd>
+        </div>
+        <div class="ra-dialog-body" id="raSearchResults" role="listbox" aria-label="Search results">
+          <p class="ra-dialog-hint">Type to search 150+ pages. Ranking: BM25 with title/description boost.</p>
+        </div>
+      </div>
+      <div id="raAskPane" role="tabpanel" aria-labelledby="raTabAsk" hidden>
+        <div class="ra-ask-panel">
+          <label for="raAskInput" style="font-size:13px;color:var(--fg-subtle);display:block;margin-bottom:6px">Ask a question about rousseau-agent</label>
+          <textarea id="raAskInput" placeholder="e.g. How do I set up the WhatsApp transport?" aria-label="Question"></textarea>
+          <button type="button" class="btn btn-primary" id="raAskGo">Ask</button>
+          <div class="ra-ask-answer" id="raAskAnswer" hidden></div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,23 @@
+[[schemas]]
+name = "doc"
+
+[[schemas.fields]]
+name = "title"
+type = "string"
+required = true
+
+[[schemas.fields]]
+name = "description"
+type = "string"
+required = true
+
+[[schemas.fields]]
+name = "category"
+type = "enum(welcome,getting-started,concepts,transports,providers,operations,security,reference,support,legal,system,guides,developer-guide,use-cases,tutorials,mcp,migrations,recipes,best-practices,community,faq)"
+required = true
+
+[[schemas.fields]]
+name = "order"
+type = "integer"
+required = false
+default = "99"
