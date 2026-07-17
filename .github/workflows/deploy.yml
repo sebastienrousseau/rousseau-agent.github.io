@@ -44,11 +44,16 @@ jobs:
         run: ffmpeg -version | head -1
 
       - name: Build the site (public/)
-        env:
-          # GitHub Pages serves this project-page repo under a subpath;
-          # every root-relative URL gets prefixed at build time.
-          BASE_PATH: /rousseau-agent.github.io
+        # Site is served at the root of the custom domain
+        # (rousseau-agent.com / docs.rousseau-agent.dev), so no
+        # BASE_PATH prefix — root-relative URLs stay at /.
         run: bash scripts/build.sh
+
+      - name: Write CNAME for the custom domain
+        # GH Pages honours the CNAME file in the deployed artefact.
+        # Without it, the "Enforce HTTPS" + custom-domain settings can
+        # get reset by an automated Pages reconfigure.
+        run: echo 'rousseau-agent.com' > public/CNAME
 
       - name: Install Node + Pa11y
         uses: actions/setup-node@v4
@@ -59,26 +64,20 @@ jobs:
         working-directory: a11y-tooling
         run: npm install --no-save pa11y
 
-      - name: Start local HTTP server for verification (mount public/ under subpath)
+      - name: Start local HTTP server for verification
         run: |
-          # Rewritten HTML uses /rousseau-agent.github.io/foo/ paths;
-          # mount public/ under that same subpath so the URLs resolve
-          # exactly as they will on GitHub Pages.
-          mkdir -p _serve
-          ln -sfn "$PWD/public" _serve/rousseau-agent.github.io
-          (cd _serve && python3 -m http.server 8000 &> /tmp/httpd.log &)
+          # Site is served from the domain root; no subpath mount needed.
+          (cd public && python3 -m http.server 8000 &> /tmp/httpd.log &)
           for i in $(seq 1 20); do
-            curl -sf http://127.0.0.1:8000/rousseau-agent.github.io/ >/dev/null 2>&1 && break
+            curl -sf http://127.0.0.1:8000/ >/dev/null 2>&1 && break
             sleep 0.5
           done
-          curl -I http://127.0.0.1:8000/rousseau-agent.github.io/ | head -1
+          curl -I http://127.0.0.1:8000/ | head -1
 
       - name: Run verification monitors
         env:
-          # Prefixed URLs in HTML resolve against BASE_URL/BASE_PATH/...;
-          # the http.server above mounts public/ at the subpath so /rousseau-agent.github.io/foo/ works.
+          # Unprefixed URLs resolve against BASE_URL/ directly.
           BASE_URL: http://127.0.0.1:8000
-          BASE_PATH: /rousseau-agent.github.io
         run: bash scripts/verify.sh
 
       - name: Configure Pages
