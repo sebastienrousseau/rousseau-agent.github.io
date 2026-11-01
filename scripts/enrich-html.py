@@ -51,7 +51,7 @@ SVG_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
   <text x="60" y="530" font-family="Inter, sans-serif" font-size="24" font-weight="400"
         fill="#a5adba" text-anchor="start">{description_short}</text>
   <text x="60" y="595" font-family="Inter, sans-serif" font-size="20" font-weight="500"
-        fill="#7aa4ff" text-anchor="start">docs.rousseau-agent.dev</text>
+        fill="#7aa4ff" text-anchor="start">rousseau-agent.com</text>
 </svg>
 """
 
@@ -126,7 +126,7 @@ def main() -> None:
         desc_m = re.search(r'<meta name="description" content="([^"]+)"', text)
         title = title_m.group(1) if title_m else "rousseau-agent"
         description = desc_m.group(1) if desc_m else "Self-hosted coding agent."
-        og_url = "https://docs.rousseau-agent.dev" + make_og_svg(title, description, html_file)
+        og_url = "https://rousseau-agent.com" + make_og_svg(title, description, html_file)
         text = inject_meta(text, "og:image", og_url)
         text = inject_meta(text, "og:image:width", "1200")
         text = inject_meta(text, "og:image:height", "630")

@@ -6,14 +6,14 @@ banner_width: "1440"
 banner: ""
 cdn: "https://cloudcdn.pro"
 charset: "utf-8"
-cname: "docs.rousseau-agent.dev"
+cname: "rousseau-agent.com"
 copyright: "Copyright © 2026 Sebastien Rousseau. Released under the MIT License."
 date: "July 13, 2026"
 description: "Verify every docs page against its build-time SHA-256 signature."
 format-detection: "telephone=no"
 hreflang: "en"
 icon: ""
-id: "https://docs.rousseau-agent.dev"
+id: "https://rousseau-agent.com"
 image_alt: "rousseau-agent logo"
 image_height: "630"
 image_width: "1200"
@@ -27,7 +27,7 @@ logo_height: "33"
 logo_width: "100"
 logo: ""
 name: "rousseau-agent"
-permalink: "https://docs.rousseau-agent.dev/reference/provenance/"
+permalink: "https://rousseau-agent.com/reference/provenance/"
 rating: "general"
 referrer: "no-referrer"
 revisit-after: "7 days"
@@ -37,7 +37,7 @@ subtitle: "Verify every docs page against its build-time SHA-256 signature."
 tags: "security"
 theme-color: "26, 58, 138"
 title: "Content provenance"
-url: "https://docs.rousseau-agent.dev"
+url: "https://rousseau-agent.com"
 viewport: "width=device-width, initial-scale=1, shrink-to-fit=no"
 changefreq: "monthly"
 
@@ -45,20 +45,20 @@ news_genres: "Blog"
 news_keywords: "security"
 news_language: "en"
 news_image_loc: ""
-news_loc: "https://docs.rousseau-agent.dev"
+news_loc: "https://rousseau-agent.com"
 news_publication_date: "Mon, 13 Jul 2026 00:00:00 GMT"
 news_publication_name: "rousseau-agent"
 news_title: "Content provenance"
 
-atom_link: https://docs.rousseau-agent.dev/rss.xml
+atom_link: https://rousseau-agent.com/rss.xml
 category: "security"
 order: 90
 schema: "doc"
 docs: https://validator.w3.org/feed/docs/rss2.html
 generator: "SSG (version 0.0.37)"
 item_description: RSS feed for rousseau-agent
-item_guid: "https://docs.rousseau-agent.dev/reference/provenance/"
-item_link: "https://docs.rousseau-agent.dev/reference/provenance/"
+item_guid: "https://rousseau-agent.com/reference/provenance/"
+item_link: "https://rousseau-agent.com/reference/provenance/"
 item_pub_date: "Mon, 13 Jul 2026 00:00:00 GMT"
 item_title: "Content provenance"
 last_build_date: "Mon, 13 Jul 2026 00:00:00 GMT"
@@ -85,9 +85,9 @@ twitter_image: ""
 twitter_image_alt: "rousseau-agent logo"
 twitter_site: "rousseauagent"
 twitter_title: "Content provenance"
-twitter_url: "https://docs.rousseau-agent.dev"
+twitter_url: "https://rousseau-agent.com"
 
-author_website: "https://docs.rousseau-agent.dev"
+author_website: "https://rousseau-agent.com"
 author_twitter: "@rousseauagent"
 author_location: "London, UK"
 thanks: "Thanks to every operator running their own coding agent."
@@ -112,9 +112,9 @@ site_software: "SSG, Rust"
 Copy this into your terminal (the second command reads the current URL and cross-checks):
 
 ```sh
-curl -s https://docs.rousseau-agent.dev/provenance.json | jq '.pages["/quickstart/"]'
+curl -s https://rousseau-agent.com/provenance.json | jq '.pages["/quickstart/"]'
 # Expected: a hex digest matching the current page's sha256
-curl -sL https://docs.rousseau-agent.dev/quickstart/ | sha256sum | awk '{print $1}'
+curl -sL https://rousseau-agent.com/quickstart/ | sha256sum | awk '{print $1}'
 ```
 
 If the two match, the page hasn't been tampered with in transit.

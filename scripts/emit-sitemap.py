@@ -2,7 +2,7 @@
 """Emit a proper sitemap.xml + robots.txt.
 
 The SSG's built-in sitemap plugin produces an empty <urlset/> for
-reasons we haven't investigated. Since docs.rousseau-agent.dev needs
+reasons we haven't investigated. Since rousseau-agent.com needs
 its sitemap for SEO, we walk public/ ourselves.
 
 Runs at the end of every build via scripts/build.sh.
@@ -13,7 +13,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1] / "public"
-BASE = "https://docs.rousseau-agent.dev"
+BASE = "https://rousseau-agent.com"
 LANGS = ("en-GB", "fr", "de", "es", "ja", "pt-BR", "zh-Hans")
 
 
