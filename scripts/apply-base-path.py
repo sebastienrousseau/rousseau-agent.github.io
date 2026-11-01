@@ -158,7 +158,7 @@ def main() -> int:
     if not prefix.startswith("/"):
         prefix = "/" + prefix
 
-    host = os.environ.get("BASE_HOST", "https://docs.rousseau-agent.dev")
+    host = os.environ.get("BASE_HOST", "https://rousseau-agent.com")
 
     stats = {"html": 0, "xml": 0, "js": 0, "css": 0, "json": 0, "sw": 0, "manifest": 0}
 

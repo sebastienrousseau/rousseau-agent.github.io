@@ -7,7 +7,7 @@
 <h1 align="center">rousseau-agent.github.io</h1>
 
 <p align="center">
-  Source for <a href="https://docs.rousseau-agent.dev">docs.rousseau-agent.dev</a> — the
+  Source for <a href="https://rousseau-agent.com">rousseau-agent.com</a> — the
   operator handbook for <a href="https://github.com/sebastienrousseau/rousseau-agent">rousseau-agent</a>.
   Rust SSG core, Python postbuild passes, Node-based accessibility audit,
   deployed to GitHub Pages behind a custom domain.
@@ -16,7 +16,7 @@
 <p align="center">
   <a href="https://github.com/sebastienrousseau/rousseau-agent.github.io/actions"><img src="https://img.shields.io/github/actions/workflow/status/sebastienrousseau/rousseau-agent.github.io/deploy.yml?style=for-the-badge&logo=github" alt="Build" /></a>
   <a href="https://github.com/sebastienrousseau/rousseau-agent.github.io/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-66c2a5?style=for-the-badge" alt="License" /></a>
-  <a href="https://docs.rousseau-agent.dev"><img src="https://img.shields.io/badge/live-docs.rousseau--agent.dev-blueviolet?style=for-the-badge" alt="Live docs" /></a>
+  <a href="https://rousseau-agent.com"><img src="https://img.shields.io/badge/live-docs.rousseau--agent.dev-blueviolet?style=for-the-badge" alt="Live docs" /></a>
 </p>
 
 ---
@@ -140,7 +140,7 @@ flowchart TB
 
  subgraph OUT["Deploy"]
  P["public/"]
- GH["GitHub Pages<br/><i>docs.rousseau-agent.dev</i>"]
+ GH["GitHub Pages<br/><i>rousseau-agent.com</i>"]
  end
 
  EN --> COMP
@@ -240,7 +240,7 @@ If any monitor fails, the deploy step never runs.
 ## Deployment
 
 Deployed to GitHub Pages under the custom domain
-[`docs.rousseau-agent.dev`](https://docs.rousseau-agent.dev). The
+[`rousseau-agent.com`](https://rousseau-agent.com). The
 CNAME is enforced via `public/CNAME` (emitted by the build) and the
 Pages settings on the repo. HTTPS is provided by GitHub Pages' Let's
 Encrypt integration.

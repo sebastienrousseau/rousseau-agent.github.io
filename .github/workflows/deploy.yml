@@ -45,7 +45,7 @@ jobs:
 
       - name: Build the site (public/)
         # Site is served at the root of the custom domain
-        # (rousseau-agent.com / docs.rousseau-agent.dev), so no
+        # (rousseau-agent.com / rousseau-agent.com), so no
         # BASE_PATH prefix — root-relative URLs stay at /.
         run: bash scripts/build.sh
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Emit /carbon.txt — the sustainability manifest for docs.rousseau-agent.dev.
+"""Emit /carbon.txt — the sustainability manifest for rousseau-agent.com.
 
 Follows the community carbon.txt schema (https://carbontxt.org/) with
 enough detail for auditors to verify page-weight discipline and
@@ -21,7 +21,7 @@ def main() -> None:
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-    content = f"""# carbon.txt for docs.rousseau-agent.dev
+    content = f"""# carbon.txt for rousseau-agent.com
 # https://carbontxt.org/ — community sustainability manifest
 # Generated at build time by scripts/emit-carbon-txt.py
 
